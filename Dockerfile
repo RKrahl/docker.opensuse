@@ -2,6 +2,7 @@ FROM opensuse
 
 RUN zypper --non-interactive modifyrepo --disable non-oss update-non-oss
 RUN zypper --non-interactive install \
+	aaa_base \
 	curl \
 	python-base \
 	python-psutil
