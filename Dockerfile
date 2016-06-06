@@ -17,7 +17,8 @@ RUN zypper --non-interactive modifyrepo --disable non-oss update-non-oss && \
 	patch:openSUSE-2016-306 \
 	patch:openSUSE-2016-360 \
 	patch:openSUSE-2016-640 \
-	patch:openSUSE-2016-648 && \
+	patch:openSUSE-2016-648 \
+	patch:openSUSE-2016-678 && \
     ( zypper --non-interactive install -t patch openSUSE-2016-580 || \
       (($? == 103)) ) && \
     zypper --non-interactive install -t patch \
@@ -33,7 +34,9 @@ RUN zypper --non-interactive modifyrepo --disable non-oss update-non-oss && \
 	openSUSE-2016-564 \
 	openSUSE-2016-583 \
 	openSUSE-2016-612 \
-	openSUSE-2016-647 && \
+	openSUSE-2016-647 \
+	openSUSE-2016-680 \
+	openSUSE-2016-681 && \
     zypper --non-interactive install \
 	aaa_base \
 	curl \
