@@ -13,32 +13,8 @@ FROM opensuse
 
 RUN zypper --non-interactive modifyrepo --disable non-oss update-non-oss && \
     zypper --non-interactive addlock \
-	dracut kmod udev \
-	patch:openSUSE-2016-306 \
-	patch:openSUSE-2016-360 \
-	patch:openSUSE-2016-640 \
-	patch:openSUSE-2016-648 \
-	patch:openSUSE-2016-678 && \
-    ( zypper --non-interactive install -t patch openSUSE-2016-580 || \
-      (($? == 103)) ) && \
+	dracut kmod udev && \
     zypper --non-interactive install -t patch \
-	openSUSE-2016-346 \
-	openSUSE-2016-392 \
-	openSUSE-2016-472 \
-	openSUSE-2016-474 \
-	openSUSE-2016-476 \
-	openSUSE-2016-523 \
-	openSUSE-2016-529 \
-	openSUSE-2016-534 \
-	openSUSE-2016-559 \
-	openSUSE-2016-564 \
-	openSUSE-2016-583 \
-	openSUSE-2016-612 \
-	openSUSE-2016-647 \
-	openSUSE-2016-680 \
-	openSUSE-2016-681 \
-	openSUSE-2016-695 \
-	openSUSE-2016-697 \
 	openSUSE-2016-733 \
 	openSUSE-2016-735 && \
     zypper --non-interactive install \
