@@ -7,17 +7,23 @@ FROM opensuse
 #   and some of the needed packages are not useful in a docker
 #   container.  Lock them out to be sure they don't get inadvertly
 #   installed later on.
+# * Remove kmod-compat.  As kmod is not installed, it only contains
+#   broken symbol links.
 # * Apply patches that are not (yet?) in the library image.
 # * Add a few very basic packages that make life easier along with
 #   python-base and python-psutil needed by the init script.
 
 RUN zypper --non-interactive modifyrepo --disable non-oss update-non-oss && \
+    rpm --erase --nodeps kmod-compat && \
     zypper --non-interactive addlock \
 	dracut kmod udev && \
     ( zypper --non-interactive install -t patch openSUSE-2016-891 || \
 	(($? == 103)) ) && \
     zypper --non-interactive install -t patch \
-	openSUSE-2016-893 && \
+	openSUSE-2016-893 \
+	openSUSE-2016-967 \
+	openSUSE-2016-972 \
+	openSUSE-2016-974 && \
     zypper --non-interactive install \
 	aaa_base \
 	curl \
