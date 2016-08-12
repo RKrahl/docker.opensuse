@@ -27,13 +27,11 @@ RUN zypper --non-interactive modifyrepo --disable non-oss update-non-oss && \
     zypper --non-interactive install \
 	aaa_base \
 	curl \
-	which \
-	python-base \
-	python-psutil
+	which
 
-RUN curl --silent --show-error --location \
-	--output /usr/local/sbin/init \
-	https://raw.githubusercontent.com/RKrahl/init/master/init.py && \
-    chmod 0755 /usr/local/sbin/init
+RUN zypper --non-interactive addrepo http://download.opensuse.org/repositories/home:Rotkraut/openSUSE_Leap_42.1/home:Rotkraut.repo && \
+    zypper --non-interactive --gpg-auto-import-keys refresh home_Rotkraut && \
+    zypper --non-interactive install tiny-init && \
+    zypper --non-interactive modifyrepo --disable home_Rotkraut
 
-ENTRYPOINT ["/usr/local/sbin/init"]
+ENTRYPOINT ["/usr/sbin/init"]
