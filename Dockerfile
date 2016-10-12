@@ -37,6 +37,8 @@ RUN zypper --non-interactive modifyrepo --disable non-oss update-non-oss && \
     zypper --non-interactive install \
 	aaa_base \
 	curl \
+	pwgen \
+	timezone \
 	which
 
 RUN zypper --non-interactive addrepo http://download.opensuse.org/repositories/home:Rotkraut/openSUSE_Leap_42.1/home:Rotkraut.repo && \
