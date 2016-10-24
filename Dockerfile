@@ -16,24 +16,8 @@ FROM opensuse
 RUN zypper --non-interactive modifyrepo --disable non-oss update-non-oss && \
     rpm --erase --nodeps kmod-compat && \
     zypper --non-interactive addlock \
-	dracut kmod udev && \
-    ( zypper --non-interactive install -t patch openSUSE-2016-891 || \
-	(($? == 103)) ) && \
-    zypper --non-interactive install -t patch \
-	openSUSE-2016-893 \
-	openSUSE-2016-967 \
-	openSUSE-2016-972 \
-	openSUSE-2016-974 \
-	openSUSE-2016-1008 \
-	openSUSE-2016-1014 \
-	openSUSE-2016-1017 \
-	openSUSE-2016-1041 \
-	openSUSE-2016-1065 \
-	openSUSE-2016-1086 \
-	openSUSE-2016-1124 \
-	openSUSE-2016-1134 \
-	openSUSE-2016-1138 \
-	openSUSE-2016-1144 && \
+	dracut kmod udev \
+-       patch:openSUSE-2016-1194 && \
     zypper --non-interactive install \
 	aaa_base \
 	curl \
