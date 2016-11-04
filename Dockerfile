@@ -22,7 +22,8 @@ RUN zypper --non-interactive modifyrepo --disable non-oss update-non-oss && \
         (($? == 103)) ) && \
     zypper --non-interactive install -t patch \
 	openSUSE-2016-1222 \
-	openSUSE-2016-1251 && \
+	openSUSE-2016-1251 \
+	openSUSE-2016-1259 && \
     zypper --non-interactive install \
 	aaa_base \
 	curl \
