@@ -23,10 +23,12 @@ RUN zypper --non-interactive modifyrepo --disable non-oss update-non-oss && \
     zypper --non-interactive install -t patch \
 	openSUSE-2016-1222 \
 	openSUSE-2016-1251 \
-	openSUSE-2016-1259 && \
+	openSUSE-2016-1259 \
+	openSUSE-2016-1280 && \
     zypper --non-interactive install \
 	aaa_base \
 	curl \
+	logrotate \
 	pwgen \
 	timezone \
 	which
