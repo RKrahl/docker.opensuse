@@ -16,17 +16,9 @@ FROM opensuse
 RUN zypper --non-interactive modifyrepo --disable non-oss update-non-oss && \
     rpm --erase --nodeps kmod-compat && \
     zypper --non-interactive addlock \
-	dracut kmod udev \
-	patch:openSUSE-2016-1194 && \
-    ( zypper --non-interactive install -t patch openSUSE-2016-1250 || \
-        (($? == 103)) ) && \
+	dracut kmod udev && \
     zypper --non-interactive install -t patch \
-	openSUSE-2016-1222 \
-	openSUSE-2016-1251 \
-	openSUSE-2016-1259 \
-	openSUSE-2016-1280 \
-	openSUSE-2016-1301 \
-	openSUSE-2016-1317 && \
+	openSUSE-2016-1332 && \
     zypper --non-interactive install \
 	aaa_base \
 	curl \
@@ -35,7 +27,7 @@ RUN zypper --non-interactive modifyrepo --disable non-oss update-non-oss && \
 	timezone \
 	which
 
-RUN zypper --non-interactive addrepo http://download.opensuse.org/repositories/home:Rotkraut/openSUSE_Leap_42.1/home:Rotkraut.repo && \
+RUN zypper --non-interactive addrepo http://download.opensuse.org/repositories/home:Rotkraut/openSUSE_Leap_42.2/home:Rotkraut.repo && \
     zypper --non-interactive --gpg-auto-import-keys refresh home_Rotkraut && \
     zypper --non-interactive install tiny-init && \
     zypper --non-interactive modifyrepo --disable home_Rotkraut
