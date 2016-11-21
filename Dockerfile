@@ -1,4 +1,4 @@
-FROM opensuse
+FROM opensuse:42.2
 
 # Do some sanitization to the library image:
 # * We don't want any non-oss packages in the image, so disable this
