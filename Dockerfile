@@ -16,7 +16,8 @@ FROM opensuse:42.2
 RUN zypper --non-interactive modifyrepo --disable non-oss update-non-oss && \
     rpm --erase --nodeps kmod-compat && \
     zypper --non-interactive addlock \
-	dracut kmod udev && \
+	dracut kmod udev \
+        patch:openSUSE-2016-1476 && \
     zypper --non-interactive install -t patch \
 	openSUSE-2016-1446 \
 	openSUSE-2016-1448 && \
