@@ -33,4 +33,4 @@ RUN zypper --non-interactive addrepo http://download.opensuse.org/repositories/h
     zypper --non-interactive install tiny-init && \
     zypper --non-interactive modifyrepo --disable home_Rotkraut
 
-ENTRYPOINT ["/usr/sbin/init"]
+ENTRYPOINT ["/usr/sbin/tiny-init"]
