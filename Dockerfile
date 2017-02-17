@@ -19,7 +19,10 @@ RUN zypper --non-interactive modifyrepo --disable non-oss update-non-oss && \
 	dracut kmod udev && \
     zypper --non-interactive install -t patch \
 	openSUSE-2017-237 \
-	openSUSE-2017-244 && \
+	openSUSE-2017-244 \
+	openSUSE-2017-248 \
+	openSUSE-2017-256 \
+	openSUSE-2017-260 && \
     zypper --non-interactive install \
 	aaa_base \
 	curl \
