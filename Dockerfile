@@ -16,12 +16,10 @@ FROM opensuse:42.2
 RUN zypper --non-interactive modifyrepo --disable non-oss update-non-oss && \
     rpm --erase --nodeps kmod-compat && \
     zypper --non-interactive addlock \
-	dracut kmod udev \
-	patch:openSUSE-2017-628 && \
+	dracut kmod udev && \
     zypper --non-interactive install -t patch \
-	openSUSE-2017-610 \
-	openSUSE-2017-614 \
-	openSUSE-2017-621 && \
+	openSUSE-2017-645 \
+	openSUSE-2017-653 && \
     zypper --non-interactive install \
 	aaa_base \
 	curl \
