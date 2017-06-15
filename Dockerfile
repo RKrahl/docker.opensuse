@@ -29,9 +29,10 @@ RUN zypper --non-interactive modifyrepo --disable non-oss update-non-oss && \
 	timezone \
 	which
 
-RUN zypper --non-interactive addrepo http://download.opensuse.org/repositories/home:Rotkraut/openSUSE_Leap_42.2/home:Rotkraut.repo && \
-    zypper --non-interactive --gpg-auto-import-keys refresh home_Rotkraut && \
+RUN zypper --non-interactive addrepo http://download.opensuse.org/repositories/home:/Rotkraut:/Docker/openSUSE_Leap_42.2/home:Rotkraut:Docker.repo && \
+    zypper --non-interactive modifyrepo --priority 150 home_Rotkraut_Docker && \
+    zypper --non-interactive --gpg-auto-import-keys refresh home_Rotkraut_Docker && \
     zypper --non-interactive install tiny-init && \
-    zypper --non-interactive modifyrepo --disable home_Rotkraut
+    zypper --non-interactive modifyrepo --disable home_Rotkraut_Docker
 
 ENTRYPOINT ["/usr/sbin/tiny-init"]
