@@ -1,4 +1,4 @@
-FROM opensuse:42.2
+FROM opensuse:42.3
 
 # Do some sanitization to the library image:
 # * We don't want any non-oss packages in the image, so disable this
@@ -17,12 +17,10 @@ RUN zypper --non-interactive modifyrepo --disable non-oss update-non-oss && \
     rpm --erase --nodeps kmod-compat && \
     zypper --non-interactive addlock \
 	dracut kmod udev && \
-    ( zypper --non-interactive install -t patch openSUSE-2017-893 || \
-	(($? == 103)) ) && \
     zypper --non-interactive install -t patch \
-	openSUSE-2017-868 \
+	openSUSE-2017-872 \
 	openSUSE-2017-903 \
-	openSUSE-2017-912 \
+	openSUSE-2017-913 \
 	openSUSE-2017-920 && \
     zypper --non-interactive install \
 	aaa_base \
@@ -32,7 +30,7 @@ RUN zypper --non-interactive modifyrepo --disable non-oss update-non-oss && \
 	timezone \
 	which
 
-RUN zypper --non-interactive addrepo http://download.opensuse.org/repositories/home:/Rotkraut:/Docker/openSUSE_Leap_42.2/home:Rotkraut:Docker.repo && \
+RUN zypper --non-interactive addrepo http://download.opensuse.org/repositories/home:/Rotkraut:/Docker/openSUSE_Leap_42.3/home:Rotkraut:Docker.repo && \
     zypper --non-interactive modifyrepo --priority 150 home_Rotkraut_Docker && \
     zypper --non-interactive --gpg-auto-import-keys refresh home_Rotkraut_Docker && \
     zypper --non-interactive install tiny-init && \
