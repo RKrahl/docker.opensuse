@@ -30,7 +30,9 @@ RUN zypper --non-interactive modifyrepo --disable non-oss update-non-oss && \
 	openSUSE-2017-1266 \
 	openSUSE-2017-1272 \
 	openSUSE-2017-1273 \
-	openSUSE-2017-1298 && \
+	openSUSE-2017-1298 \
+	openSUSE-2017-1303 \
+	openSUSE-2017-1304 && \
     zypper --non-interactive install \
 	aaa_base \
 	curl \
