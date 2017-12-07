@@ -13,21 +13,20 @@ FROM opensuse:42.3
 # * Add a few very basic packages that make life easier along with
 #   python-base and python-psutil needed by the init script.
 
-RUN zypper --non-interactive modifyrepo --disable non-oss update-non-oss && \
+RUN zypper --non-interactive modifyrepo --disable "NON OSS" "NON OSS Update" && \
     rpm --erase --nodeps kmod-compat && \
     zypper --non-interactive addlock \
-	dracut kmod udev \
-	patch:openSUSE-2017-1325 && \
-    ( zypper --non-interactive install -t patch openSUSE-2017-1326 || \
-	(($? == 103)) ) && \
+	dracut kmod udev && \
     zypper --non-interactive install -t patch \
-	openSUSE-2017-1318 \
-	openSUSE-2017-1324 \
-	openSUSE-2017-1328 && \
+	openSUSE-2017-1281 && \
     zypper --non-interactive install \
 	aaa_base \
 	curl \
+	dbus-1 \
+	fipscheck \
 	logrotate \
+	pinentry \
+	pkg-config \
 	pwgen \
 	timezone \
 	which
