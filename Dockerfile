@@ -17,11 +17,7 @@ RUN zypper --non-interactive modifyrepo --disable "NON OSS" "NON OSS Update" && 
     rpm --erase --nodeps kmod-compat && \
     zypper --non-interactive addlock \
 	dracut kmod udev && \
-    zypper --non-interactive install -t patch \
-	openSUSE-2017-1355 \
-	openSUSE-2017-1368 \
-	openSUSE-2017-1375 \
-	openSUSE-2017-1381 && \
+    zypper --non-interactive patch && \
     zypper --non-interactive install \
 	aaa_base \
 	curl \
@@ -35,7 +31,6 @@ RUN zypper --non-interactive modifyrepo --disable "NON OSS" "NON OSS Update" && 
 	which
 
 RUN zypper --non-interactive addrepo http://download.opensuse.org/repositories/home:/Rotkraut:/Docker/openSUSE_Leap_42.3/home:Rotkraut:Docker.repo && \
-    zypper --non-interactive modifyrepo --priority 150 home_Rotkraut_Docker && \
     zypper --non-interactive --gpg-auto-import-keys refresh home_Rotkraut_Docker && \
     zypper --non-interactive install tiny-init && \
     zypper --non-interactive modifyrepo --disable home_Rotkraut_Docker
