@@ -18,7 +18,10 @@ RUN zypper --non-interactive modifyrepo --disable "NON OSS" "NON OSS Update" && 
     zypper --non-interactive addlock \
 	dracut kmod udev \
 	patch:openSUSE-2018-117 \
-	patch:openSUSE-2018-216 && \
+	patch:openSUSE-2018-216 \
+	patch:openSUSE-2018-259 && \
+    ( zypper --non-interactive install -t patch openSUSE-2018-263 || \
+	(($? == 103)) ) && \
     zypper --non-interactive patch && \
     zypper --non-interactive install \
 	aaa_base \
