@@ -1,4 +1,4 @@
-FROM opensuse:42.3
+FROM opensuse/leap:42.3
 
 # Do some sanitization to the library image:
 # * We don't want any non-oss packages in the image, so disable this
@@ -9,7 +9,7 @@ FROM opensuse:42.3
 #   installed later on.
 # * Remove kmod-compat.  As kmod is not installed, it only contains
 #   broken symbol links.
-# * Apply patches that are not (yet?) in the library image.
+# * Apply patches.
 # * Add a few very basic packages that make life easier along with
 #   python-base and python-psutil needed by the init script.
 
@@ -17,11 +17,8 @@ RUN zypper --non-interactive modifyrepo --disable "NON OSS" "NON OSS Update" && 
     rpm --erase --nodeps kmod-compat && \
     zypper --non-interactive addlock \
 	dracut kmod udev && \
-    ( zypper --non-interactive install -t patch openSUSE-2018-397 || \
-	(($? == 103)) ) && \
     zypper --non-interactive patch && \
     zypper --non-interactive install \
-	aaa_base \
 	curl \
 	dbus-1 \
 	fipscheck \
