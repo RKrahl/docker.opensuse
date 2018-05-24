@@ -17,6 +17,7 @@ RUN zypper --non-interactive modifyrepo \
     zypper --non-interactive patch && \
     zypper --non-interactive install \
 	curl \
+	file \
 	pwgen \
 	timezone \
 	which
