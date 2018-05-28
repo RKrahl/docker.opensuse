@@ -16,7 +16,8 @@ FROM opensuse/leap:42.3
 RUN zypper --non-interactive modifyrepo --disable "NON OSS" "NON OSS Update" && \
     rpm --erase --nodeps kmod-compat && \
     zypper --non-interactive addlock \
-	dracut kmod udev && \
+	dracut kmod udev \
+	patch:openSUSE-2018-529 && \
     zypper --non-interactive patch && \
     zypper --non-interactive install \
 	curl \
