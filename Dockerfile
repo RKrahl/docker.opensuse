@@ -3,22 +3,22 @@ FROM opensuse/leap:15.0
 # Do some sanitization to the library image:
 # * We don't want any non-oss packages in the image, so disable this
 #   repo right away.
-# * Some package are not useful in a docker container but are marked
-#   as dependencies of other packages.  Lock them out to be sure they
-#   don't get inadvertly installed later on.
+# * Add systemd.  This package is not needed by this image, but more
+#   or less all packages for server applications require it nowadays,
+#   so it makes sense to have it in the common base package.
 # * Apply patches.
 # * Add a few very basic packages that make life easier along with
 #   python-base and python-psutil needed by the init script.
 
 RUN zypper --non-interactive modifyrepo \
 	--disable "repo-non-oss" "repo-update-non-oss" && \
-    zypper --non-interactive addlock \
-        dracut kmod udev && \
     zypper --non-interactive patch && \
     zypper --non-interactive install \
 	curl \
 	file \
+	glibc-locale \
 	pwgen \
+	systemd \
 	timezone \
 	which
 
