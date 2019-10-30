@@ -12,7 +12,8 @@ FROM opensuse/leap:15.0
 
 RUN zypper --non-interactive modifyrepo \
 	--disable "repo-non-oss" "repo-update-non-oss" && \
-    zypper --non-interactive patch && \
+    ( zypper --non-interactive patch || \
+        ((test $? == 103) && zypper --non-interactive patch )) && \
     zypper --non-interactive install \
 	curl \
 	file \
