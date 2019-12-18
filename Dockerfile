@@ -10,10 +10,14 @@ FROM opensuse/leap:15.1
 # * Add a few very basic packages that make life easier along with
 #   python-base and python-psutil needed by the init script.
 
+# Exclude patch openSUSE-2019-2686.  It breaks the "zypper addrepo"
+# later on (and probably other stuff too).
+
 RUN zypper --non-interactive modifyrepo \
 	--disable "repo-non-oss" "repo-update-non-oss" && \
     zypper --non-interactive modifyrepo \
 	--refresh "repo-oss" "repo-update" && \
+    zypper --non-interactive addlock patch:openSUSE-2019-2686 && \
     ( zypper --non-interactive patch || \
         ((test $? == 103) && zypper --non-interactive patch )) && \
     zypper --non-interactive install \
