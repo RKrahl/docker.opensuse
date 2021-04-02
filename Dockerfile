@@ -1,4 +1,4 @@
-FROM opensuse/leap:15.2
+FROM opensuse/leap:15.3
 
 # Do some sanitization to the library image:
 # * We don't want any non-oss packages in the image, so disable this
@@ -12,8 +12,6 @@ FROM opensuse/leap:15.2
 
 RUN zypper --non-interactive modifyrepo \
 	--disable "repo-non-oss" "repo-update-non-oss" && \
-    zypper --non-interactive modifyrepo \
-	--refresh "repo-oss" "repo-update" && \
     ( zypper --non-interactive patch || \
         ((test $? == 103) && zypper --non-interactive patch )) && \
     zypper --non-interactive install \
@@ -24,7 +22,7 @@ RUN zypper --non-interactive modifyrepo \
 	timezone \
 	which
 
-RUN zypper --non-interactive addrepo https://download.opensuse.org/repositories/home:/Rotkraut:/Docker/openSUSE_Leap_15.2/home:Rotkraut:Docker.repo && \
+RUN zypper --non-interactive addrepo https://download.opensuse.org/repositories/home:/Rotkraut:/Docker/openSUSE_Leap_15.3/home:Rotkraut:Docker.repo && \
     zypper --non-interactive --gpg-auto-import-keys refresh home_Rotkraut_Docker && \
     zypper --non-interactive install tiny-init && \
     zypper --non-interactive modifyrepo --disable home_Rotkraut_Docker
