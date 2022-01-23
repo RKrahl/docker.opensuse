@@ -7,8 +7,8 @@ FROM opensuse/leap:15.3
 #   or less all packages for server applications require it nowadays,
 #   so it makes sense to have it in the common base package.
 # * Apply patches.
-# * Add a few very basic packages that make life easier along with
-#   python-base and python-psutil needed by the init script.
+# * Add a few very basic packages needed by most derived images.
+# * Add the init script.
 
 RUN zypper --non-interactive modifyrepo \
 	--disable "repo-non-oss" "repo-update-non-oss" && \
