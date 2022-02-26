@@ -1,4 +1,4 @@
-FROM opensuse/leap:15.3
+FROM registry.opensuse.org/opensuse/leap:15.3
 
 # Do some sanitization to the library image:
 # * We don't want any non-oss packages in the image, so disable this
