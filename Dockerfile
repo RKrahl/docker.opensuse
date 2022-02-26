@@ -1,11 +1,8 @@
-FROM opensuse/tumbleweed
+FROM registry.opensuse.org/opensuse/tumbleweed
 
 # Do some sanitization to the library image:
 # * We don't want any non-oss packages in the image, so disable this
 #   repo right away.
-# * Add systemd.  This package is not needed by this image, but more
-#   or less all packages for server applications require it nowadays,
-#   so it makes sense to have it in the common base package.
 # * Apply patches.
 # * Add a few very basic packages needed by most derived images.
 # * Add the init script.
