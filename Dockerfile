@@ -12,13 +12,13 @@ FROM opensuse/leap:42.3
 # * Apply patches.
 # * Add a few very basic packages that make life easier along with
 #   python-base and python-psutil needed by the init script.
+# * Disable repo oss-update as it is not valid any more.
 
-RUN zypper --non-interactive modifyrepo --disable "NON OSS" "NON OSS Update" && \
+RUN zypper --non-interactive modifyrepo --disable \
+	"NON OSS" "NON OSS Update" "OSS Update" && \
     rpm --erase --nodeps kmod-compat && \
     zypper --non-interactive addlock \
-	dracut kmod udev \
-	patch:openSUSE-2018-529 && \
-    zypper --non-interactive patch && \
+	dracut kmod udev && \
     zypper --non-interactive install \
 	curl \
 	dbus-1 \
@@ -31,6 +31,7 @@ RUN zypper --non-interactive modifyrepo --disable "NON OSS" "NON OSS Update" && 
 	which
 
 RUN zypper --non-interactive addrepo http://download.opensuse.org/repositories/home:/Rotkraut:/Docker/openSUSE_Leap_42.3/home:Rotkraut:Docker.repo && \
+    sed -i -e 's/https/http/' /etc/zypp/repos.d/home_Rotkraut_Docker.repo && \
     zypper --non-interactive --gpg-auto-import-keys refresh home_Rotkraut_Docker && \
     zypper --non-interactive install tiny-init && \
     zypper --non-interactive modifyrepo --disable home_Rotkraut_Docker
