@@ -9,6 +9,7 @@ FROM registry.opensuse.org/opensuse/leap:15.5
 
 RUN zypper --non-interactive modifyrepo \
 	--disable "repo-non-oss" "repo-update-non-oss" && \
+    zypper --non-interactive addlock python3-base && \
     ( zypper --non-interactive patch || \
         ((test $? == 103) && zypper --non-interactive patch )) && \
     zypper --non-interactive install \
@@ -16,8 +17,12 @@ RUN zypper --non-interactive modifyrepo \
 	file \
 	glibc-locale \
 	pwgen \
+	python311-base \
 	timezone \
-	which
+	update-alternatives \
+	which && \
+    update-alternatives --install \
+	/usr/bin/python3 python3 /usr/bin/python3.11 311
 
 RUN zypper --non-interactive addrepo https://download.opensuse.org/repositories/home:/Rotkraut:/python/15.5/home:Rotkraut:python.repo && \
     zypper --non-interactive addrepo https://download.opensuse.org/repositories/home:/Rotkraut:/Docker/15.5/home:Rotkraut:Docker.repo && \
