@@ -24,10 +24,10 @@ RUN zypper --non-interactive modifyrepo \
     update-alternatives --install \
 	/usr/bin/python3 python3 /usr/bin/python3.11 311
 
-RUN zypper --non-interactive addrepo https://download.opensuse.org/repositories/home:/Rotkraut:/python/15.5/home:Rotkraut:python.repo && \
+RUN zypper --non-interactive addrepo https://download.opensuse.org/repositories/home:/Rotkraut:/python-extra/15.5/home:Rotkraut:python-extra.repo && \
     zypper --non-interactive addrepo https://download.opensuse.org/repositories/home:/Rotkraut:/Docker/15.5/home:Rotkraut:Docker.repo && \
-    zypper --non-interactive --gpg-auto-import-keys refresh home_Rotkraut_python home_Rotkraut_Docker && \
-    zypper --non-interactive modifyrepo --refresh home_Rotkraut_python && \
+    zypper --non-interactive --gpg-auto-import-keys refresh home_Rotkraut_python-extra home_Rotkraut_Docker && \
+    zypper --non-interactive modifyrepo --refresh home_Rotkraut_python-extra && \
     zypper --non-interactive install tiny-init && \
     zypper --non-interactive modifyrepo --disable home_Rotkraut_Docker
 
